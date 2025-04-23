@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suprise BITCH 💚</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    body {
+      background: linear-gradient(to bottom right, #d0f0c0, #b1d3b1);
+      overflow: hidden;
+    }
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #2f4f2f;
+      animation: bounce 1.5s infinite;
+    }
+    .btn {
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .yes {
+      background-color: #7ec850;
+      color: white;
+    }
+    .no {
+      background-color: #f08080;
+      color: white;
+      position: absolute;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .heart {
+      position: absolute;
+      font-size: 2em;
+      cursor: pointer;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { top: -50px; }
+      100% { top: 100vh; }
+    }
+    .love-page {
+      background: linear-gradient(to bottom right, #e5ffe5, #c1e1c1);
+      animation: fadeIn 2s ease;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="page1">
+    <h1>This is gonna be your best 21st birthday gift ever... ready to continue?😚</h1>
+    <button class="btn yes" onclick="startGame()">yes mommy 💚</button>
+    <button class="btn no" id="noBtn">hell nah bitch 😒</button>
+  </div>
+
+  <script>
+    // No button lari & pusing
+    const noBtn = document.getElementById('noBtn');
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+      noBtn.style.transform = `rotate(${Math.random() * 360}deg)`;
+    });
+
+    function startGame() {
+  document.body.innerHTML = `
+    <div class="container" id="gamePage">
+      <h1>Only one heart is real… click it if you can</h1>
+      <div id="gameArea" style="position: relative; width: 100vw; height: 100vh;"></div>
+    </div>
+  `;
+
+  const heartCount = 50; // Number of love hearts
+  const correctIndex = Math.floor(Math.random() * (heartCount + 1)); // Randomly assign the "middle finger"
+  const gameArea = document.getElementById('gameArea');
+
+  // Create hearts and the middle finger
+  for (let i = 0; i < heartCount; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    heart.innerText = '❤️';
+    heart.addEventListener('click', () => {
+      if (i === correctIndex) {
+        showLovePage();
+      } else {
+        alert('HAHAHHAHAHHA, SORRY DO SALAH');
+      }
+    });
+    gameArea.appendChild(heart);
+  }
+
+  // Add middle finger emoji at a random position
+  const middleFinger = document.createElement('div');
+  middleFinger.classList.add('heart');
+  middleFinger.style.left = Math.random() * window.innerWidth + 'px';
+  middleFinger.style.animationDuration = (Math.random() * 3 + 2) + 's';
+  middleFinger.innerText = '🖕';  // Middle finger emoji
+  middleFinger.addEventListener('click', () => {
+    showLovePage(); // When the middle finger is clicked, proceed
+  });
+  gameArea.appendChild(middleFinger);
+}
+
+
+    function showLovePage() {
+      document.body.innerHTML = `
+        <div class="love-page">
+          <h1 style="font-size: 3em; color: #2e8b57;">WHAT DO U EXPECT ? FUCK YOU BRO 💚</h1>
+          <p style="font-size: 1.5em; color: #4b6043; margin-top: 20px;">SORRY DO TIPU... 💌</p>
+          <div style="margin-top: 30px; font-size: 2em; animation: sparkle 2s infinite alternate;">
+            ✨💐🌸🌿💖🎈
+          </div>
+        </div>
+        <style>
+          @keyframes sparkle {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.2); opacity: 1; }
+          }
+        </style>
+      `;
+    }
+  </script>
+</body>
+</html>
